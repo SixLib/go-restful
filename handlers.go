@@ -2,13 +2,12 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	if err := json.NewEncoder(w).Encode(`welcome!`); err != nil {
-		panic(err)
-	}
+	fmt.Fprintln(w, `welcome!`)
 }
 
 // 定义restful 统一返回数据结构
