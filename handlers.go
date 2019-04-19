@@ -9,6 +9,7 @@ import (
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request, param httprouter.Params) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	fmt.Fprintln(w, `welcome!`)
 }
 
