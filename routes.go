@@ -1,23 +1,24 @@
 package main
 
-import "net/http"
+import "github.com/julienschmidt/httprouter"
 
+/*
+Define all the routes here.
+A new Route entry passed to the routes slice will be automatically
+translated to a handler with the NewRouter() function
+*/
 type Route struct {
 	Name        string
-	Method      []string
-	Pattern     string
-	Auth        bool
-	HandlerFunc http.HandlerFunc
+	Method      string
+	Path        string
+	HandlerFunc httprouter.Handle
 }
+
 type Routes []Route
 
-//路由配置
-var routes = Routes{
-	Route{
-		"index",
-		[]string{"GET", "POST"},
-		"/",
-		false,
-		IndexHandler,
-	},
+func AllRoutes() Routes {
+	routes := Routes{
+		Route{"Index", "GET", "/", IndexHandler},
+	}
+	return routes
 }
